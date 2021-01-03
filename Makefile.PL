@@ -1,4 +1,7 @@
+#! /usr/bin/perl
 
+use strict;
+use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
@@ -22,8 +25,12 @@ WriteMakefile(
             META_MERGE => {
                 resources => {
                     license    => 'http://dev.perl.org/licenses/',
-                    repository =>
-                      'https://github.com/david-dick/date-holidays-au',
+                    repository => {
+                        type => 'git',
+                        url  =>
+                          'https://github.com/david-dick/date-holidays-au.git',
+                        web => 'https://github.com/david-dick/date-holidays-au',
+                    },
                     bugtracker => {
                         web =>
 'https://github.com/david-dick/date-holidays-au/issues',
