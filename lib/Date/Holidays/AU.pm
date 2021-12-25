@@ -1150,6 +1150,7 @@ sub _compute_wa_queens_bday
         2020 => { day => 28, month => 8 },
         2021 => { day => 27, month => 8 },
         2022 => { day => 26, month => 8 },
+        2023 => { day => 25, month => 8 },
     );
     if ( $wa_queens_bday{$year} ) {
         $day   = $wa_queens_bday{$year}{day};
