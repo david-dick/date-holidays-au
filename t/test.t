@@ -1,7 +1,7 @@
 #! /usr/bin/perl 
 
 use Date::Holidays::AU qw( is_holiday holidays );
-use Test::More(tests => 160 );
+use Test::More(tests => 161 );
 use strict;
 use warnings;
 
@@ -150,6 +150,7 @@ ok(is_holiday(2020, 9, 28, 'WA'), "WA Queen's Birthday 2020");
 ok(is_holiday(2021, 9, 27, 'WA'), "WA Queen's Birthday 2021");
 ok(is_holiday(2022, 9, 26, 'WA'), "WA Queen's Birthday 2022");
 ok(is_holiday(2023, 9, 25, 'WA'), "WA King's Birthday 2023");
+ok(is_holiday(2024, 9, 23, 'WA'), "WA King's Birthday 2024");
 my ($year) = (localtime(time))[5] + 1900 + 1;
 eval { is_holiday($year, 1, 1, 'WA'); };
 ok($@ eq '', "WA King's Birthday next year ($year)");
