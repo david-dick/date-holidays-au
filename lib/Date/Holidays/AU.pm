@@ -10,7 +10,7 @@ use Carp();
 
 use base qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.28';
+our $VERSION   = '0.29';
 
 sub _DEFAULT_STATE { return 'VIC' }
 
@@ -1279,7 +1279,7 @@ Date::Holidays::AU - Determine Australian Public Holidays
 
 =head1 VERSION
  
-Version 0.28
+Version 0.29
 
 =head1 SYNOPSIS
 
