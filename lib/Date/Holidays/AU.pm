@@ -239,9 +239,14 @@ sub holidays {
         }
     }
     else {
-        foreach my $holiday ( _compute_queens_bday($year) )
-        {    # Queens Birthday day
-            $holidays{$holiday} = 'Queens Birthday';
+        foreach my $holiday ( _compute_royal_bday($year) )
+        {    # King's Birthday day
+            if ( $year <= 2022 ) {
+                $holidays{$holiday} = q[Queen's Birthday];
+            }
+            else {
+                $holidays{$holiday} = q[King's Birthday];
+            }
         }
     }
     my $holiday_hashref;
@@ -285,9 +290,14 @@ sub holidays {
         }
     }
     elsif ( $state eq 'WA' ) {
-        foreach my $holiday ( _compute_wa_queens_bday($year) )
+        foreach my $holiday ( _compute_wa_royal_bday($year) )
         {    # WA Queens Birthday day
-            $holidays{$holiday} = 'Queens Birthday';
+            if ( $year <= 2022 ) {
+                $holidays{$holiday} = q[Queen's Birthday];
+            }
+            else {
+                $holidays{$holiday} = q[King's Birthday];
+            }
         }
     }
     elsif ( $state eq 'ACT' ) {
@@ -794,7 +804,7 @@ sub _compute_wa_foundation_day {    # first monday in june
     return ( sprintf '%02d%02d', ( $month + 1 ), $day );
 }
 
-sub _compute_queens_bday {    # second monday in june
+sub _compute_royal_bday {    # second monday in june
     my ($year)  = @_;
     my $day     = 1;
     my $month   = 5;
@@ -1127,11 +1137,11 @@ sub _compute_nsw_sa_act_labour_day {    # first monday in october
     return ( sprintf '%02d%02d', ( $month + 1 ), $day );
 }
 
-sub _compute_wa_queens_bday
+sub _compute_wa_royal_bday
 { # monday closest to 30 september???  Formula unknown. Seems to have a 9 day spread???
     my ($year) = @_;
     my ( $day, $month );
-    my %wa_queens_bday = (
+    my %wa_royal_bday = (
         2004 => { day => 4,  month => 9 },
         2005 => { day => 26, month => 8 },
         2006 => { day => 2,  month => 9 },
@@ -1153,14 +1163,18 @@ sub _compute_wa_queens_bday
         2022 => { day => 26, month => 8 },
         2023 => { day => 25, month => 8 },
     );
-    if ( $wa_queens_bday{$year} ) {
-        $day   = $wa_queens_bday{$year}{day};
-        $month = $wa_queens_bday{$year}{month};
+    if ( $wa_royal_bday{$year} ) {
+        $day   = $wa_royal_bday{$year}{day};
+        $month = $wa_royal_bday{$year}{month};
     }
-    else {
+    elsif ( $year <= 2022 ) {
         Carp::croak(
             q[Don't know how to calculate Queen's Birthday in WA for this year]
         );
+    }
+    else {
+        Carp::croak(
+            q[Don't know how to calculate King's Birthday in WA for this year]);
     }
     return ( sprintf '%02d%02d', ( $month + 1 ), $day );
 }
