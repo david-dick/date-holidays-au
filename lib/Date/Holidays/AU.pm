@@ -168,7 +168,7 @@ sub holidays {
             }
         }
         foreach my $holiday ( _compute_eight_hours_day($year) )
-        {                # TAS eight hours day
+        {    # TAS eight hours day
             $holidays{$holiday} = 'Eight Hours Day';
         }
     }
@@ -225,7 +225,7 @@ sub holidays {
                 $allowed =~ s/\s*//smxg;
                 if ( $allowed eq 'agfest' ) {
                     foreach my $holiday ( _compute_agfest($year) )
-                    {                                           # TAS Agfest
+                    {    # TAS Agfest
                         $holidays{$holiday} = 'Agfest';
                     }
                 }
@@ -269,14 +269,14 @@ sub holidays {
     }
     elsif ( $state eq 'SA' ) {
         foreach my $holiday ( _compute_nsw_sa_act_labour_day($year) )
-        {        # SA labour day
+        {    # SA labour day
             $holidays{$holiday} = 'Labour Day';
         }
     }
     elsif ( $state eq 'NT' ) {
         foreach
           my $holiday_hashref ( _compute_nt_show_day_hash( $year, \%params ) )
-        {        # NT regional show days
+        {    # NT regional show days
             $holidays{ $holiday_hashref->{date} } =
               $holiday_hashref->{name};
         }
@@ -353,17 +353,17 @@ sub holidays {
             && ( $params{include_bank_holiday} ) )
         {
             foreach my $holiday ( _compute_nsw_act_bank_holiday($year) )
-            {            # NSW bank holiday
+            {    # NSW bank holiday
                 $holidays{$holiday} = 'Bank Holiday';
             }
         }
         foreach my $holiday ( _compute_nsw_sa_act_labour_day($year) )
-        {                # NSW labour day
+        {        # NSW labour day
             $holidays{$holiday} = 'Labour Day';
         }
     }
     foreach my $holiday_hashref ( _compute_christmas_hash( $year, $state ) )
-    {                    # christmas day + boxing day
+    {            # christmas day + boxing day
         $holidays{ $holiday_hashref->{date} } = $holiday_hashref->{name};
     }
     return ( \%holidays );
