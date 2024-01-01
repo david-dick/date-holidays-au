@@ -1,0 +1,59 @@
+name: Perl
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-latest, macos-latest, windows-latest]
+        perl: [ '5.32' ]
+
+    runs-on: ${{matrix.runner}}
+    name: OS ${{matrix.runner}} Perl ${{matrix.perl}}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up perl
+      uses: shogo82148/actions-setup-perl@v1
+      with:
+          perl-version: ${{ matrix.perl }}
+          install-modules: 'Date::Easter Test::Simple Time::Local'
+          install-modules-with: cpanm
+          install-modules-args: --with-develop --with-configure
+          enable-modules-cache: true
+          distribution: ${{ ( startsWith( matrix.runner, 'windows-' ) && 'strawberry' ) || 'default' }}
+
+    - name: Show Perl Version
+      run: |
+        perl -v
+
+    - name: Install Modules
+      env:
+        AUTOMATED_TESTING: 1
+      run: |
+        cpanm -v
+        cpanm --installdeps .
+        cpanm Test::CheckManifest
+
+    - name: Run tests under gmake (on windows)
+      if: ${{ startsWith(matrix.runner, 'windows-') }}
+      env:
+        RELEASE_TESTING: 1
+      run: |
+        perl Makefile.PL
+        gmake
+        gmake test
+
+    - name: Run tests under make (not windows)
+      if: ${{ ! startsWith(matrix.runner, 'windows-') }}
+      env:
+        RELEASE_TESTING: 1
+      run: |
+        perl Makefile.PL
+        make
+        make test
