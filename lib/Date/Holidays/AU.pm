@@ -10,7 +10,7 @@ use Carp();
 
 use base qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.30';
+our $VERSION   = '0.31';
 
 sub _DEFAULT_STATE { return 'VIC' }
 
