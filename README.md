@@ -18,7 +18,7 @@ Version 0.30
 # DESCRIPTION
 
 This module makes an attempt at describing Australian holidays using the
-interface defined [Date::Holidays::Abstract](https://metacpan.org/pod/Date%3A%3AHolidays%3A%3AAbstract), which defines two methods,
+interface defined [Date::Holidays::Abstract](https://metacpan.org/pod/Date::Holidays::Abstract), which defines two methods,
 is\_holiday and holidays.
 
 # SUBROUTINES/METHODS
@@ -28,14 +28,14 @@ is\_holiday and holidays.
     returns true or false depending to whether or not the date in question
     is a holiday according to the state and the additional parameters.
 
-- holidays($year, $state, %params)
+- holidays(year => $year, state => $state, %params)
 
     Returns a hashref of all defined holidays in the year according
     to the state and the additional parameters. Keys in the hashref
     are in 'mmdd' format, the values are the names of the
     holidays.
 
-    The states may be 'VIC','WA','NT','QLD','TAS','NSW','SA' or 'ACT'.  The
+    The states must be one of the allowed [ISO 3166-2:AU](https://en.wikipedia.org/wiki/ISO_3166-2:AU) codes; 'VIC','WA','NT','QLD','TAS','NSW','SA' or 'ACT'.  The
     default state is 'VIC'.  The following tables lists the allowable parameters
     for each state;
 
@@ -76,4 +76,4 @@ it under the same terms as Perl itself.
 
 # SEE ALSO
 
-[Date::Holidays::Abstract](https://metacpan.org/pod/Date%3A%3AHolidays%3A%3AAbstract), [Date::Holiday::DE](https://metacpan.org/pod/Date%3A%3AHolidays%3A%3ADE), [Date::Holiday::UK](https://metacpan.org/pod/Date%3A%3AHolidays%3A%3AUK)
+[Date::Holidays::Abstract](https://metacpan.org/pod/Date::Holidays::Abstract), [Date::Holiday::DE](https://metacpan.org/pod/Date::Holidays::DE), [Date::Holiday::UK](https://metacpan.org/pod/Date::Holidays::UK)

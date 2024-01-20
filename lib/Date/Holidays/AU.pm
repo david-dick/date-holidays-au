@@ -1307,14 +1307,14 @@ is_holiday and holidays.
 returns true or false depending to whether or not the date in question
 is a holiday according to the state and the additional parameters.
 
-=item holidays($year, $state, %params)
+=item holidays(year => $year, state => $state, %params)
 
 Returns a hashref of all defined holidays in the year according
 to the state and the additional parameters. Keys in the hashref
 are in 'mmdd' format, the values are the names of the
 holidays.
 
-The states may be 'VIC','WA','NT','QLD','TAS','NSW','SA' or 'ACT'.  The
+The states must be one of the allowed L<ISO 3166-2:AU|https://en.wikipedia.org/wiki/ISO_3166-2:AU> codes; 'VIC','WA','NT','QLD','TAS','NSW','SA' or 'ACT'.  The
 default state is 'VIC'.  The following tables lists the allowable parameters
 for each state;
 
