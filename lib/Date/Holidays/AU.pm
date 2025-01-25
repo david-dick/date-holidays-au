@@ -1219,6 +1219,8 @@ sub _compute_wa_royal_bday
         2023 => { day => 25, month => 8 },
         2024 => { day => 23, month => 8 },
         2025 => { day => 29, month => 8 },
+        2026 => { day => 28, month => 8 },
+        2027 => { day => 27, month => 8 },
     );
     if ( $wa_royal_bday{$year} ) {
         $day   = $wa_royal_bday{$year}{day};
