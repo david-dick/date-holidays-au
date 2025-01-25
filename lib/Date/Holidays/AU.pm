@@ -961,6 +961,7 @@ sub _compute_vic_grand_final_eve_day {    # i have no words ...
         2022 => { day => 23, month => 8 },
         2023 => { day => 29, month => 8 },
         2024 => { day => 27, month => 8 },
+        2025 => { day => 26, month => 8 },
     );
     if ( $year < 2015 ) {
         return ();
