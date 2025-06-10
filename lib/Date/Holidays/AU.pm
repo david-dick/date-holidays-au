@@ -209,16 +209,15 @@ sub holidays {
         }
     }
     elsif ( $state eq 'TAS' ) {
-            foreach my $allowed ( @{ $params{holidays} } ) {
-                $allowed = lc $allowed;
-                $allowed =~ s/\s*//smxg;
-                if ( $allowed eq 'agfest' ) {
-                    foreach my $holiday ( _compute_agfest($year) )
-                    {    # TAS Agfest
-                        $holidays{$holiday} = 'Agfest';
-                    }
+        foreach my $allowed ( @{ $params{holidays} } ) {
+            $allowed = lc $allowed;
+            $allowed =~ s/\s*//smxg;
+            if ( $allowed eq 'agfest' ) {
+                foreach my $holiday ( _compute_agfest($year) ) {    # TAS Agfest
+                    $holidays{$holiday} = 'Agfest';
                 }
             }
+        }
     }
     if ( $state eq 'WA' ) {
         foreach my $holiday ( _compute_wa_foundation_day($year) )
@@ -264,7 +263,7 @@ sub holidays {
             }
         }
         foreach my $holiday ( _compute_qld_royal_bday($year) )
-        {    # QLD Queens Birthday day
+        {        # QLD Queens Birthday day
             if ( $year <= _YEAR_OF_QUEEN_ELIZABETHS_DEATH() ) {
                 $holidays{$holiday} = q[Queen's Birthday];
             }
@@ -275,14 +274,14 @@ sub holidays {
     }
     elsif ( $state eq 'SA' ) {
         foreach my $holiday ( _compute_nsw_sa_act_labour_day($year) )
-        {    # SA labour day
+        {        # SA labour day
             $holidays{$holiday} = 'Labour Day';
         }
     }
     elsif ( $state eq 'NT' ) {
         foreach
           my $holiday_hashref ( _compute_nt_show_day_hash( $year, \%params ) )
-        {    # NT regional show days
+        {        # NT regional show days
             $holidays{ $holiday_hashref->{date} } =
               $holiday_hashref->{name};
         }
@@ -316,46 +315,46 @@ sub holidays {
         }
     }
     elsif ( $state eq 'TAS' ) {
-            foreach my $allowed ( @{ $params{holidays} } ) {
-                $allowed = lc $allowed;
-                $allowed =~ s/\s*//smxg;
-                if ( $allowed eq 'burnieshow' ) {
-                    foreach my $holiday ( _compute_burnie_show($year) )
-                    {    # TAS burnie show day
-                        $holidays{$holiday} = 'Burnie Show';
-                    }
-                }
-                elsif ( $allowed eq 'launcestonshow' ) {
-                    foreach my $holiday ( _compute_launceston_show($year) )
-                    {    # TAS launceston show day
-                        $holidays{$holiday} = 'Launceston Show';
-                    }
-                }
-                elsif ( $allowed eq 'flindersislandshow' ) {
-                    foreach my $holiday ( _compute_flinders_island_show($year) )
-                    {    # TAS flinders island show day
-                        $holidays{$holiday} = 'Flinders Island Show';
-                    }
-                }
-                elsif ( $allowed eq 'hobartshow' ) {
-                    foreach my $holiday ( _compute_hobart_show($year) )
-                    {    # TAS hobart show day
-                        $holidays{$holiday} = 'Hobart Show';
-                    }
-                }
-                elsif ( $allowed eq 'recreationday' ) {
-                    foreach my $holiday ( _compute_recreation_day($year) )
-                    {    # TAS recreation day
-                        $holidays{$holiday} = 'Recreation Day';
-                    }
-                }
-                elsif ( $allowed eq 'devonportshow' ) {
-                    foreach my $holiday ( _compute_devonport_show($year) )
-                    {    # TAS devonport show day
-                        $holidays{$holiday} = 'Devonport Show';
-                    }
+        foreach my $allowed ( @{ $params{holidays} } ) {
+            $allowed = lc $allowed;
+            $allowed =~ s/\s*//smxg;
+            if ( $allowed eq 'burnieshow' ) {
+                foreach my $holiday ( _compute_burnie_show($year) )
+                {    # TAS burnie show day
+                    $holidays{$holiday} = 'Burnie Show';
                 }
             }
+            elsif ( $allowed eq 'launcestonshow' ) {
+                foreach my $holiday ( _compute_launceston_show($year) )
+                {    # TAS launceston show day
+                    $holidays{$holiday} = 'Launceston Show';
+                }
+            }
+            elsif ( $allowed eq 'flindersislandshow' ) {
+                foreach my $holiday ( _compute_flinders_island_show($year) )
+                {    # TAS flinders island show day
+                    $holidays{$holiday} = 'Flinders Island Show';
+                }
+            }
+            elsif ( $allowed eq 'hobartshow' ) {
+                foreach my $holiday ( _compute_hobart_show($year) )
+                {    # TAS hobart show day
+                    $holidays{$holiday} = 'Hobart Show';
+                }
+            }
+            elsif ( $allowed eq 'recreationday' ) {
+                foreach my $holiday ( _compute_recreation_day($year) )
+                {    # TAS recreation day
+                    $holidays{$holiday} = 'Recreation Day';
+                }
+            }
+            elsif ( $allowed eq 'devonportshow' ) {
+                foreach my $holiday ( _compute_devonport_show($year) )
+                {    # TAS devonport show day
+                    $holidays{$holiday} = 'Devonport Show';
+                }
+            }
+        }
     }
     else {
         if (   ( exists $params{include_bank_holiday} )
@@ -390,34 +389,34 @@ sub _check_tas_holidays {
             }
         }
     }
-        foreach my $allowed ( @{$param_holidays} ) {
-            $allowed = lc $allowed;
-            $allowed =~ s/\s*//smxg;
-            if ( $allowed eq 'devonportcup' ) {
-                foreach my $holiday ( _compute_devonport_cup($year) )
-                {    # TAS devonport cup
-                    $holidays{$holiday} = 'Devonport Cup';
-                }
-            }
-            elsif ( $allowed eq 'hobartregatta' ) {
-                foreach my $holiday ( _compute_hobart_regatta($year) )
-                {    # TAS hobart regatta
-                    $holidays{$holiday} = 'Hobart Regatta';
-                }
-            }
-            elsif ( $allowed eq 'launcestoncup' ) {
-                foreach my $holiday ( _compute_launceston_cup($year) )
-                {    # TAS launceston cup
-                    $holidays{$holiday} = 'Launceston Cup';
-                }
-            }
-            elsif ( $allowed eq 'kingislandshow' ) {
-                foreach my $holiday ( _compute_king_island_show($year) )
-                {    # TAS king island show
-                    $holidays{$holiday} = 'King Island Show';
-                }
+    foreach my $allowed ( @{$param_holidays} ) {
+        $allowed = lc $allowed;
+        $allowed =~ s/\s*//smxg;
+        if ( $allowed eq 'devonportcup' ) {
+            foreach my $holiday ( _compute_devonport_cup($year) )
+            {    # TAS devonport cup
+                $holidays{$holiday} = 'Devonport Cup';
             }
         }
+        elsif ( $allowed eq 'hobartregatta' ) {
+            foreach my $holiday ( _compute_hobart_regatta($year) )
+            {    # TAS hobart regatta
+                $holidays{$holiday} = 'Hobart Regatta';
+            }
+        }
+        elsif ( $allowed eq 'launcestoncup' ) {
+            foreach my $holiday ( _compute_launceston_cup($year) )
+            {    # TAS launceston cup
+                $holidays{$holiday} = 'Launceston Cup';
+            }
+        }
+        elsif ( $allowed eq 'kingislandshow' ) {
+            foreach my $holiday ( _compute_king_island_show($year) )
+            {    # TAS king island show
+                $holidays{$holiday} = 'King Island Show';
+            }
+        }
+    }
     foreach my $holiday ( _compute_eight_hours_day($year) )
     {    # TAS eight hours day
         $holidays{$holiday} = 'Eight Hours Day';
@@ -865,7 +864,7 @@ sub _compute_wa_foundation_day {    # first monday in june
 sub _compute_qld_royal_bday {    # first monday in october
     my ($year)  = @_;
     my $day     = 1;
-    my $month  = _OCTOBER_MONTH_NUMBER() - 1;
+    my $month   = _OCTOBER_MONTH_NUMBER() - 1;
     my $date    = Time::Local::timelocal( 0, 0, 0, $day, $month, $year );
     my $mondays = 0;
     my ( $sec, $min, $hour, $wday, $yday, $isdst );
