@@ -1,7 +1,7 @@
 #! /usr/bin/perl 
 
 use Date::Holidays::AU qw( is_holiday holidays );
-use Test::More(tests => 163 );
+use Test::More(tests => 164 );
 use strict;
 use warnings;
 
@@ -98,9 +98,10 @@ ok(is_holiday(2004, 6, 14, 'TAS'), "Queen's Birthday 2004");
 ok(is_holiday(2005, 6, 13, 'VIC'), "Queen's Birthday 2005");
 ok(is_holiday(2005, 6, 13, 'ACT'), "Queen's Birthday 2005");
 ok(is_holiday(2005, 6, 13, 'NT'), "Queen's Birthday 2005");
-ok(is_holiday(2007, 6, 11, 'QLD'), "Queen's Birthday 2007");
+ok(is_holiday(2007, 10, 1, 'QLD'), "Queen's Birthday 2007");
 ok(is_holiday(2006, 6, 12, 'NSW'), "Queen's Birthday 2007");
 ok(is_holiday(2006, 6, 12, 'SA'), "Queen's Birthday 2007");
+ok(is_holiday(2025, 10, 6, 'QLD'), "Queen's Birthday 2025");
 ok(not(is_holiday(2006, 6, 12, 'WA')), "Not WA Queen's Birthday 2007");
 ok(not(is_holiday(2005, 7, 1, 'NT')), "Not Alice Springs Show Day 2005");
 ok(is_holiday(2005, 7, 1, 'NT', { 'region' => 'Alice Springs' }), "Alice Springs Show Day 2005");

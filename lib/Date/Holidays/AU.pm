@@ -226,6 +226,8 @@ sub holidays {
             $holidays{$holiday} = 'Foundation Day';
         }
     }
+    elsif ( $state eq 'QLD' ) {
+    }
     else {
         foreach my $holiday ( _compute_royal_bday($year) )
         {    # King's Birthday day
@@ -259,6 +261,15 @@ sub holidays {
             foreach my $holiday ( _compute_qld_show_day($year) )
             {    # Queensland Show day
                 $holidays{$holiday} = 'Queensland Show Day';
+            }
+        }
+        foreach my $holiday ( _compute_qld_royal_bday($year) )
+        {    # QLD Queens Birthday day
+            if ( $year <= _YEAR_OF_QUEEN_ELIZABETHS_DEATH() ) {
+                $holidays{$holiday} = q[Queen's Birthday];
+            }
+            else {
+                $holidays{$holiday} = q[King's Birthday];
             }
         }
     }
@@ -834,6 +845,27 @@ sub _compute_wa_foundation_day {    # first monday in june
     my ($year)  = @_;
     my $day     = 1;
     my $month   = 5;
+    my $date    = Time::Local::timelocal( 0, 0, 0, $day, $month, $year );
+    my $mondays = 0;
+    my ( $sec, $min, $hour, $wday, $yday, $isdst );
+    while ( $mondays < 1 ) {
+        ( $sec, $min, $hour, undef, undef, undef, $wday, $yday, $isdst ) =
+          localtime $date;
+        if ( $wday == 1 ) {
+            $mondays += 1;
+        }
+        if ( $mondays < 1 ) {
+            $day += 1;
+            $date = Time::Local::timelocal( 0, 0, 0, $day, $month, $year );
+        }
+    }
+    return ( sprintf '%02d%02d', ( $month + 1 ), $day );
+}
+
+sub _compute_qld_royal_bday {    # first monday in october
+    my ($year)  = @_;
+    my $day     = 1;
+    my $month  = _OCTOBER_MONTH_NUMBER() - 1;
     my $date    = Time::Local::timelocal( 0, 0, 0, $day, $month, $year );
     my $mondays = 0;
     my ( $sec, $min, $hour, $wday, $yday, $isdst );
