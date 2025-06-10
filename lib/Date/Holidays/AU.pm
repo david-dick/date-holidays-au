@@ -209,7 +209,6 @@ sub holidays {
         }
     }
     elsif ( $state eq 'TAS' ) {
-        if ( exists $params{holidays} ) {
             foreach my $allowed ( @{ $params{holidays} } ) {
                 $allowed = lc $allowed;
                 $allowed =~ s/\s*//smxg;
@@ -220,7 +219,6 @@ sub holidays {
                     }
                 }
             }
-        }
     }
     if ( $state eq 'WA' ) {
         foreach my $holiday ( _compute_wa_foundation_day($year) )
@@ -307,7 +305,6 @@ sub holidays {
         }
     }
     elsif ( $state eq 'TAS' ) {
-        if ( exists $params{holidays} ) {
             foreach my $allowed ( @{ $params{holidays} } ) {
                 $allowed = lc $allowed;
                 $allowed =~ s/\s*//smxg;
@@ -348,7 +345,6 @@ sub holidays {
                     }
                 }
             }
-        }
     }
     else {
         if (   ( exists $params{include_bank_holiday} )
@@ -383,7 +379,6 @@ sub _check_tas_holidays {
             }
         }
     }
-    if ( defined $param_holidays ) {
         foreach my $allowed ( @{$param_holidays} ) {
             $allowed = lc $allowed;
             $allowed =~ s/\s*//smxg;
@@ -412,7 +407,6 @@ sub _check_tas_holidays {
                 }
             }
         }
-    }
     foreach my $holiday ( _compute_eight_hours_day($year) )
     {    # TAS eight hours day
         $holidays{$holiday} = 'Eight Hours Day';

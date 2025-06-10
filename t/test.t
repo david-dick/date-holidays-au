@@ -1,7 +1,7 @@
 #! /usr/bin/perl 
 
 use Date::Holidays::AU qw( is_holiday holidays );
-use Test::More(tests => 162 );
+use Test::More(tests => 163 );
 use strict;
 use warnings;
 
@@ -48,6 +48,7 @@ eval {
 };
 ok($@ =~ /^Holidays parameter must be a reference to an array/, "Exception is thrown when the holidays parameter is not a reference to an array");
 ok(not(is_holiday(2004, 1, 7, 'TAS', { 'holidays' => ['Recreation Day']})), "Not Devonport Cup 2004");
+ok(not(is_holiday(2004, 1, 7, 'TAS')), "Not Devonport Cup 2004 (no holiday hash)");
 ok(is_holiday(2005, 1, 26, 'VIC'), "Australia Day 2005");
 ok(is_holiday(2019, 1, 28, 'VIC'), "Australia Day 2019");
 ok(is_holiday(2004, 2, 9, 'TAS', { 'holidays' => [ 'Hobart Show','Hobart Regatta' ]}), "Hobart Regatta 2004");
