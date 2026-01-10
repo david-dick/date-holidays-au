@@ -204,5 +204,6 @@ ok(is_holiday(2022, 9, 23, 'VIC'), "Grand Final Eve 2022");
 ok(is_holiday(2023, 9, 29, 'VIC'), "Grand Final Eve 2023");
 ok(is_holiday(2024, 9, 27, 'VIC'), "Grand Final Eve 2024");
 ok(is_holiday(2025, 9, 26, 'VIC'), "Grand Final Eve 2025");
+ok(is_holiday(2026, 9, 25, 'VIC'), "Grand Final Eve 2026");
 eval { is_holiday($year + 2, 1, 1, 'VIC'); };
 ok($@ =~ /^Don't know how to calculate Grand Final Eve Day/, "Attempting to calculate Grand Final Eve too far in the future throws exception");
