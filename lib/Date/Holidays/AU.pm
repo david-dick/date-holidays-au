@@ -181,7 +181,7 @@ sub holidays {
         $holidays{$holiday} = $easter_day_name{$count};
         $count += 1;
     }
-    if ( ( $state eq 'VIC' ) || ( $state eq 'TAS' ) || ( $state eq 'NSW' ) ) {
+    if ( ( $state eq 'VIC' ) || ( $state eq 'TAS' ) ) {
         foreach my $holiday (
             _compute( _ANZAC_DAY_IN_APRIL(), _APRIL_MONTH_NUMBER(), $year ) )
         {    # ANZAC day
