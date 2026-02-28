@@ -10,7 +10,7 @@ use Carp();
 
 use base qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.37';
+our $VERSION   = '0.38';
 
 sub _DEFAULT_STATE                        { return 'VIC' }
 sub _LOCALTIME_YEAR_IDX                   { return 5 }
@@ -181,7 +181,7 @@ sub holidays {
         $holidays{$holiday} = $easter_day_name{$count};
         $count += 1;
     }
-    if ( ( $state eq 'VIC' ) || ( $state eq 'TAS' ) ) {
+    if ( $state =~ /^(?:VIC|TAS|QLD|SA|NT)$/ ) {
         foreach my $holiday (
             _compute( _ANZAC_DAY_IN_APRIL(), _APRIL_MONTH_NUMBER(), $year ) )
         {    # ANZAC day
