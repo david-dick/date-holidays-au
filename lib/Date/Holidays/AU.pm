@@ -1385,7 +1385,7 @@ Date::Holidays::AU - Determine Australian Public Holidays
 
 =head1 VERSION
  
-Version 0.37
+Version 0.38
 
 =head1 SYNOPSIS
 
